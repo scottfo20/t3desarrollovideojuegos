@@ -8,6 +8,7 @@ public class Controladorcerezas : MonoBehaviour
 {
     private int cerezas = 0;
     private TMP_Text puntoText;
+    [SerializeField] private AudioSource collectionSoundEffect;
      void Start() {
         
         puntoText = GameObject.Find("puntos").GetComponent<TextMeshProUGUI>();
@@ -16,7 +17,7 @@ public class Controladorcerezas : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Cereza"))
         {
-        
+            collectionSoundEffect.Play();
             Destroy(collision.gameObject);
             cerezas++;
             puntoText.text = "Cerezas: "+ cerezas;

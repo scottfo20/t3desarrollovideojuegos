@@ -7,7 +7,7 @@ public class PlataformaMo : MonoBehaviour
     [SerializeField] private GameObject[] waypoints;  // Puntos de movimiento
     private int currentWaypointIndex = 0;  // Índice actual de waypoint
     [SerializeField] private float speed = 2f;  // Velocidad de movimiento
-    [SerializeField] private float detectionRadius = 0.5f; // Radio de detección del jugador
+    //[SerializeField] private float detectionRadius = 0.5f; // Radio de detección del jugador
     [SerializeField] private LayerMask playerLayer;  // Capa que representa al jugador
 
     private GameObject player;  // Referencia al jugador
@@ -38,25 +38,6 @@ public class PlataformaMo : MonoBehaviour
 
         transform.position = Vector2.MoveTowards(transform.position, waypoints[currentWaypointIndex].transform.position, Time.deltaTime * speed);
     }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        // Si el jugador entra en la zona de la plataforma, lo detecta
-        if (collision.CompareTag("Player"))
-        {
-            player = collision.gameObject;
-            isPlayerOnPlatform = true;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        // Si el jugador sale de la zona de la plataforma, se desancla
-        if (collision.CompareTag("Player"))
-        {
-            isPlayerOnPlatform = false;
-            player = null;
-        }
-    }
 }
+
 
